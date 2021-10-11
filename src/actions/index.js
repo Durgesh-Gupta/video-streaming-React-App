@@ -1,4 +1,6 @@
 import React from 'react'
+import { formValues } from 'redux-form'
+import streams from '../apis/streams'
 
 export const signIn = (userId) => {
     return {
@@ -13,3 +15,8 @@ export const signOut = () => {
 
     }
 }
+
+export const createStream = formValues=>async dispatch=>{
+    streams.post("/streams",formValues);
+
+    }
