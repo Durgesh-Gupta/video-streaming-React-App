@@ -36,8 +36,8 @@ class StreamCreate extends Component {
     );
   };
 
-  onSubmit(formvalue) {
-    console.log(formvalue);
+  onSubmit=(formValue)=> {
+    this.props.createStream(formValue)
   }
 
   render() {
@@ -77,7 +77,9 @@ error.description="You must enter a description"
 
 
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: "streamCreate",
   validate
 })(StreamCreate);
+
+export default connect(null,{createStream})(formWrapped);
