@@ -2,24 +2,19 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreanForm extends Component {
-
-    renderError({error,touched}){
-            if (touched && error){
-                return (
-                    <div className="ui error message">
-
-                    <div className="header">
-                        {error}
-                    </div>
-                    </div>
-                )
-            }
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
     }
+  }
 
-
-  renderInput=({ input, label,meta })=> {
+  renderInput = ({ input, label, meta }) => {
     //   console.log(meta)
-    const className=`field ${meta.error && meta.touched? "error":""}`;
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -28,15 +23,15 @@ class StreanForm extends Component {
           // value={formProps.input.value}
           // or
           {...input}
-          />
-          {this.renderError(meta)}
+        />
+        {this.renderError(meta)}
       </div>
     );
   };
 
-  onSubmit=(formValue)=> {
-    this.props.onSubmit(formValue)
-  }
+  onSubmit = (formValue) => {
+    this.props.onSubmit(formValue);
+  };
 
   render() {
     return (
@@ -62,21 +57,18 @@ class StreanForm extends Component {
   }
 }
 
-const validate =(formValue)=>{
-const error={}
-    if(!formValue.title){
-error.title="You must enter a title"
-    }
-    if(!formValue.description){
-error.description="You must enter a description"
-    }
-    return error;
-}
-
-
+const validate = (formValue) => {
+  const error = {};
+  if (!formValue.title) {
+    error.title = "You must enter a title";
+  }
+  if (!formValue.description) {
+    error.description = "You must enter a description";
+  }
+  return error;
+};
 
 export default reduxForm({
   form: "streamForm",
-  validate
+  validate,
 })(StreanForm);
-
